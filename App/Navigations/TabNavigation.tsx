@@ -1,9 +1,10 @@
 import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import BookingScreen from 'App/Screens/BookingScreen/BookingScreen';
 import ProfileScreen from 'App/Screens/ProfileScreen/ProfileScreen';
 import { FontAwesome } from '@expo/vector-icons';
 import HomeVavigation from './HomeNavigation';
+import BookingNavigation from './BookingNavigation';
+import AboutScreen from '../Screens/AboutScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,6 +15,12 @@ const TabNavigation = () => {
         headerShown: false,
         // tabBarActiveTintColor: "#00f00f"
         // tabBarInactiveTintColor : "#00f00f"
+        tabBarStyle: {
+          elevation: 0,
+          shadowOpacity: 0,
+          borderTopWidth: 0,
+          // backgroundColor: "#fff"
+        },
       }}>
       <Tab.Screen
         name="Home"
@@ -27,7 +34,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Booking"
-        component={BookingScreen}
+        component={BookingNavigation}
         options={{
           tabBarLabel: ({ color }) => (
             <Text style={{ color: color, fontSize: 12, marginTop: -2 }}>Booking</Text>
@@ -38,15 +45,25 @@ const TabNavigation = () => {
         }}
       />
       <Tab.Screen
+        name="About"
+        component={AboutScreen}
+        options={{
+          tabBarLabel: ({ color }) => (
+            <Text style={{ color: color, fontSize: 12, marginTop: -2 }}>About</Text>
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="info-circle" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
           tabBarLabel: ({ color }) => (
             <Text style={{ color: color, fontSize: 12, marginTop: -2 }}>Profile</Text>
           ),
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="user-circle" size={size} color={color} />
-          ),
+          tabBarIcon: ({ color, size }) => <FontAwesome name="user" size={size} color={color} />,
         }}
       />
     </Tab.Navigator>

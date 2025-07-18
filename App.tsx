@@ -1,4 +1,5 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Platform, View } from 'react-native';
 import './global.css';
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo';
 import { tokenCache } from '@clerk/clerk-expo/token-cache';
@@ -18,21 +19,31 @@ export default function App() {
     throw new Error('Missing Clerk Publishable Key in app config');
   }
 
+  const AppContent = () => (
+    <>
+      <SignedOut>
+        <Login />
+      </SignedOut>
+      <SignedIn>
+        <NavigationContainer>
+          <TabNavigation />
+        </NavigationContainer>
+      </SignedIn>
+    </>
+  );
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ClerkProvider tokenCache={tokenCache} publishableKey={clerkKey}>
-        <SafeAreaView className="flex-1 p-1" edges={['bottom', 'top']}>
-        <SignedOut>
-          <Login />
-        </SignedOut>
-
-        <SignedIn>
-          {/* <Slot /> */}
-          <NavigationContainer>
-            <TabNavigation />
-          </NavigationContainer>
-        </SignedIn>
-        </SafeAreaView>
+        {Platform.OS === 'web' ? (
+          <View style={{ flex: 1, padding: 8 }}>
+            <AppContent />
+          </View>
+        ) : (
+          <SafeAreaView className="flex-1 p-1" edges={['top', 'bottom']}>
+            <AppContent />
+          </SafeAreaView>
+        )}
       </ClerkProvider>
     </GestureHandlerRootView>
   );

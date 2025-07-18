@@ -18,7 +18,7 @@ const Category = () => {
   };
 
   return (
-    <View className="mt-3 ">
+    <View className="mt-5 ">
       <View className="flex flex-row justify-between">
         <Text className="text-lg font-semibold">Category</Text>
         <Text className="mt-2 pr-2 text-[12px] font-medium">View All</Text>

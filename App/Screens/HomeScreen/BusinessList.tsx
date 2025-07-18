@@ -1,8 +1,10 @@
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { useEffect, useState } from 'react';
 import GlobalApi from 'App/Utils/GlobalApi';
+import { useNavigation } from '@react-navigation/native';
 
 const BusinessList = () => {
+  const navigation:any = useNavigation()
   const [businessLists, setBusinessLists] = useState<any>([]);
   useEffect(() => {
     getBusinessList();
@@ -15,9 +17,9 @@ const BusinessList = () => {
   };
 
   return (
-    <View className=" mt-4">
+    <View className=" mt-6">
       <View className="mb-2 flex flex-row justify-between">
-        <Text className="text-lg font-semibold">Business List</Text>
+        <Text className="text-lg font-semibold">Latest Business</Text>
         <Text className="mt-2 pr-2 text-[12px] font-medium">View All</Text>
       </View>
       <FlatList
@@ -25,7 +27,9 @@ const BusinessList = () => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <View className="mr-4  rounded-xl bg-white p-2">
+          <TouchableOpacity onPress={() => navigation.push('business-detail', {
+            business:item
+          })} className="mr-4  rounded-xl bg-white p-2">
             <View className="flex flex-row justify-center">
               <Image
                 source={{ uri: item?.images[0]?.url }}
@@ -40,7 +44,7 @@ const BusinessList = () => {
                 {item?.category?.name}
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>

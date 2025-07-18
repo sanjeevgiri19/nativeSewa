@@ -8,10 +8,10 @@ const Header = () => {
 
   return (
     user && (
-      <View className="rounded-b-3xl bg-purple-600/80 p-3">
+      <View className="rounded-b-3xl bg-purple-600/80 p-4">
         <View className="flex flex-row items-center justify-between">
           <View className="flex flex-row items-center">
-            <Image source={{ uri: user?.imageUrl }} className="m-4 h-12 w-12 rounded-full" />
+            <Image source={{ uri: user?.imageUrl }} className="mx-2 my-4 h-12 w-12 rounded-full" />
             <View className="flex">
               <Text className="text-gray-100 text-sm">Welcome,</Text>
               <Text className="text-gray-100 font-semibold">{user?.fullName}</Text>

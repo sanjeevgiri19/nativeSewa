@@ -6,7 +6,7 @@ import BusinessList from './BusinessList';
 
 const HomeScreen = () => {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <Header />
       <View className="px-3 py-2">
         <Slider />
