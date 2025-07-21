@@ -58,16 +58,7 @@ Sewa addresses the challenge of fragmented service discovery and booking by prov
 
 5. Run on your device:
    - Use the Expo Go app or an emulator.
-nativeSewa/
-├── App/
-│   ├── Components/        # Reusable UI components
-│   ├── Navigations/       # Navigation stacks and tab navigation
-│   ├── Screens/           # App screens (Home, Booking, Profile, etc.)
-│   └── Utils/             # Utility functions and API calls (e.g., Hygraph/GraphQL)
-├── assets/                # Images, fonts, and other static resources
-├── App.tsx                # Entry point of the application
-├── global.css             # Global styles
-└── tailwind.config.js     # Tailwind CSS configuration
+
 
 
 ## Contributing
